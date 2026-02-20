@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rydal Mount Drama Engine</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Rydal Mount Drama Engine</h1>
+    <p>Randomisers, gossip, timelines, and custom wheels for your boarding school stories.</p>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>Profile & Saved Data</h2>
+      <div class="grid two">
+        <label>Story/User Name
+          <input id="userName" placeholder="e.g. EllieAU" />
+        </label>
+        <button id="saveProfile">Save Profile</button>
+      </div>
+      <small>All wheels, people, history, and gossip are stored locally per profile name.</small>
+    </section>
+
+    <section class="card">
+      <h2>People Setup</h2>
+      <details open>
+        <summary>Bulk Enter Students/Staff</summary>
+        <textarea id="bulkPeople" rows="7" placeholder="Format: Name, Role, Gender, Sexuality, Age"></textarea>
+        <button id="importBulk">Import Bulk</button>
+      </details>
+
+      <details>
+        <summary>Add One Person</summary>
+        <div class="grid five">
+          <input id="pName" placeholder="Name" />
+          <select id="pRole"><option>Student</option><option>Staff</option></select>
+          <select id="pGender"><option>Female</option><option>Male</option><option>Nonbinary</option></select>
+          <select id="pSex"><option>Straight</option><option>Bisexual</option><option>Lesbian</option><option>Gay</option><option>Asexual</option><option>Questioning</option></select>
+          <input id="pAge" type="number" min="10" max="99" placeholder="Age" />
+        </div>
+        <button id="addPerson">Add Person</button>
+      </details>
+
+      <div class="tableWrap">
+        <table id="peopleTable">
+          <thead><tr><th>Name</th><th>Role</th><th>Gender</th><th>Sexuality</th><th>Age</th><th>Action</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Core Randomisers</h2>
+      <div class="grid two">
+        <div>
+          <h3>Random Name Picker</h3>
+          <label>Filter Role
+            <select id="nameRoleFilter"><option value="Any">Any</option><option>Student</option><option>Staff</option></select>
+          </label>
+          <button id="pickName">Pick Name</button>
+          <p id="nameResult" class="result"></p>
+        </div>
+
+        <div>
+          <h3>Coin Flip Scenario</h3>
+          <input id="coinScenario" placeholder="e.g. Does Ellie text first?" />
+          <button id="flipCoin">Flip Coin</button>
+          <p id="coinResult" class="result"></p>
+        </div>
+
+        <div>
+          <h3>Dating / Crush Matchmaker</h3>
+          <button id="matchmake">Spin Match</button>
+          <p class="tiny">Rule: NO staff/student pairings.</p>
+          <p id="matchResult" class="result"></p>
+        </div>
+
+        <div>
+          <h3>Pregnancy Test (female students only)</h3>
+          <label>Character
+            <select id="pregPerson"></select>
+          </label>
+          <button id="pregTest">Run Test</button>
+          <button id="pregReroll">Reroll</button>
+          <p id="pregResult" class="result"></p>
+          <div id="pregTracker" class="hidden">
+            <label>Baby Gender
+              <select id="babyGender"><option>Girl</option><option>Boy</option><option>Twins (Mixed)</option><option>Unknown</option></select>
+            </label>
+            <label>Number of Babies
+              <input id="babyCount" type="number" min="1" max="6" value="1" />
+            </label>
+            <label>Trimester
+              <select id="trimester"><option>1st</option><option>2nd</option><option>3rd</option></select>
+            </label>
+            <label>Bump Size
+              <select id="bumpSize"><option>Not showing</option><option>Small</option><option>Noticeable</option><option>Large</option></select>
+            </label>
+            <button id="savePregnancy">Save Pregnancy Tracker</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Custom Wheels</h2>
+      <div class="grid three">
+        <input id="wheelName" placeholder="Wheel name" />
+        <textarea id="wheelEntries" rows="3" placeholder="One entry per line"></textarea>
+        <button id="saveWheel">Save Wheel</button>
+      </div>
+      <div id="wheelList"></div>
+    </section>
+
+    <section class="card">
+      <h2>Gossip Feed + Group Chat ☕</h2>
+      <div class="grid two">
+        <div>
+          <textarea id="storyInput" rows="3" placeholder="Write what just happened in your story..."></textarea>
+          <button id="generateGossip">Generate Gossip & Responses</button>
+          <button id="randomNotif">Random Phone Notification</button>
+          <ul id="gossipFeed"></ul>
+        </div>
+        <div>
+          <div class="chatHead">Teacup Group Chat ☕</div>
+          <div id="chatLog" class="chatLog"></div>
+          <div class="grid two">
+            <input id="chatSender" placeholder="Sender name" />
+            <input id="chatMsg" placeholder="Message" />
+          </div>
+          <button id="sendChat">Send Message</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Rydal Mount Timeline / History</h2>
+      <button id="addCalendarEvents">Load School Calendar</button>
+      <ul id="timeline"></ul>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
